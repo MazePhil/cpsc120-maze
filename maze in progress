@@ -29,7 +29,7 @@ int main()
    
     cin >> direct;
     if(direct == 'w'){
-        board[2][4]= board[3][4];
+        board[2][4]= board[0][4];
     }
     
     return 0;
