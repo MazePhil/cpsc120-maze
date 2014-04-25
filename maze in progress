@@ -26,19 +26,20 @@ int main()
     "a: move the i left\n"
     "s: move the i down\n"
     "d: move the i right\n";
-    
-
-    cin >> direct;
     int irow=3;
     int icolumn=4;
+    while(true){
+    cin >> direct;
+   
     if(direct == 'w'){
         char temp;
         temp=board[irow-1][icolumn];
         board[irow-1][icolumn]= board[irow][icolumn];
         board[irow][icolumn]=temp;
+        irow--;
+        
+    }print();
     }
-   print();
-   
    
     
     return 0;
