@@ -1,9 +1,33 @@
 #include <iostream>
 using namespace std;
 
-const int rows=4 ;
-const int columns=9 ;
-char board[rows][columns+1] = { "** === **", "*       *", "*       *", "*** i ***" };
+const int rows=22 ;
+const int columns=77 ;
+char board[rows][columns+1] = {
+"** ******** ~~~~~~~~  MMMMMMMM  *********** === ********* ~~~~~~~~~~ MMMMMMMM",
+"*** ~~~~~~~~~~~~~~~~~~~~~~~      ~~~~~~~~~~~~     *********************   ***",
+"*****************       MMMMMMMMMMMMM   ****    *********************    ~~~*",
+"*** ~~~~~~~~~~~~~~~~~~~~~~~      ~~~~~~~~~~~~     *********************   ***",
+"*** ~~~~~~~~~~~~~~~~~~~~~~~                       *********************   ***",
+"*** ~~~~~~~~~~~~~~~              ~~~~~~~~~~~~     *********************   ***",
+"*** ~~~~~~~~~~~~~~    ~~~~~      ~~~~~~~~~~~~     *********************   ***",
+"*****************       MMM   MMMMMMM   ****    *********************    ~~~*",
+"*****************       MMMMMMMMMMMMM   ****    *********************    ~~~*",
+"*****************       MMMMMMMMMMMMM   ****    *********************    ~~~*",
+"****** ***********     ****     ~~~~~        ~~~~~~~~    MMMMMMMM           *",
+"****** ***********     ****     ~~~~~~~~~        ~~~~~~~~    MMMMMMMM       *",
+"****** ***********     ****     ~~~~~~~          ~~~~~~~~    MMMMMMMM       *",
+"****** ***********                               ~~~~~~~~    MMMMMMMM       *",
+"*** ~~~~~~~~~~~~~~~~~~~~~~~      ~~~~~~     *********************  ****** ***",
+"*** ~~~~~~~~~~~~~~~~~~~~~~~      ~~~~~~~     ********************* ~~~~   ***",
+"*** ~~~~~~~~~~~~~~~~~~~~~~~      ~~~~~~~     ********************* ~~~~   ***",
+"*****************       MMMMMMMMMMMMM   ****    *********************    ~~~*",
+"*****************       MMMMMMMMMMMMM   ****    *********************    ~~~*",
+"*****************       MMMMMMMMMMMMM   ****    *********************    ~~~*",
+"*** ~~~~~~~~~~~~~~~~~~~~~~~      ~~~~~~~~~~~~     *********************   ***",
+"*** ~~~~~~~~~~~~~~~~~~~~~~~      ~~~~~~~~~~~~  i  *********************   ***",
+
+};
 
 void print(){
     for (int x=0; x<rows;x++){
@@ -26,21 +50,127 @@ int main()
     "a: move the i left\n"
     "s: move the i down\n"
     "d: move the i right\n";
-    int irow=3;
-    int icolumn=4;
+    int irow=21;
+    int icolumn=47;
+    char temp;
     while(true){
-    cin >> direct;
-   
-    if(direct == 'w'){
-        char temp;
-        temp=board[irow-1][icolumn];
-        board[irow-1][icolumn]= board[irow][icolumn];
-        board[irow][icolumn]=temp;
-        irow--;
+        cin >> direct;
         
-    }print();
+        if(direct == 'w'){
+            char temp;
+            if (irow-1 < 0){
+                cout<<"You are out of the board. HAHAHA\n";
+                break;
+            }
+            temp=board[irow-1][icolumn];
+            if (temp == '='){
+                cout<<"You won\n";
+                break;
+            }
+            else if (temp == '*'){
+                cout<<"You hit the wall\n";
+                continue;
+            }
+            else if (temp == '~'){
+                cout<<"Drink the water and check your move\n";
+                continue;
+            }
+            else if (temp == 'M'){
+                cout<<" HAHAHA. I am a Monster, I just ate you, so good!!!! LOSER....\n";
+                break;
+            }
+            board[irow-1][icolumn]= board[irow][icolumn];
+            board[irow][icolumn]=temp;
+            irow--;
+        }
+        else if(direct == 's'){
+            char temp;
+            if (irow+1 > 21){
+                cout<<"You are out of the board. HAHAHA\n";
+                break;
+            }
+
+            temp=board[irow+1][icolumn];
+            if (temp == '='){
+                cout<<"You won\n";
+                break;
+            }
+            else if (temp == '*'){
+                cout<<"You hit the wall\n";
+                continue;
+                
+            }
+            else if (temp == '~'){
+                cout<<"Drink the water and check your move\n";
+                continue;
+            }
+            else if (temp == 'M'){
+                cout<<" HAHAHA. I am a Monster, I just ate you, so good!!!! LOSER....\n";
+                break;
+            }
+            board[irow+1][icolumn]= board[irow][icolumn];
+            board[irow][icolumn]=temp;
+            irow++;
+            
+        }
+        else if(direct == 'a'){
+            char temp;
+            temp=board[irow][icolumn-1];
+            if (temp == '='){
+                cout<<"You won\n";
+                break;
+            }
+            else if (temp == '*'){
+                cout<<"You hit the wall\n";
+                continue;
+                
+            }
+            else if (temp == '~'){
+                cout<<"Drink the water and check your move\n";
+                continue;
+            }
+            else if (temp == 'M'){
+                cout<<" HAHAHA. I am a Monster, I just ate you, so good!!!! LOSER....\n";
+                break;
+            }
+            board[irow][icolumn-1]= board[irow][icolumn];
+            board[irow][icolumn]=temp;
+            icolumn--;
+            
+            
+        }
+        else if(direct == 'd'){
+            char temp;
+            temp=board[irow][icolumn+1];
+            if (temp == '='){
+                cout<<"You won\n";
+                break;
+            }
+            else if (temp == '*'){
+                cout<<"You hit the wall\n";
+                continue;
+                
+            }
+            else if (temp == '~'){
+                cout<<"Drink the water and check your move\n";
+                continue;
+            }
+            else if (temp == 'M'){
+                cout<<" HAHAHA. I am a Monster, I just ate you, so good!!!! LOSER....\n";
+                break;
+            }
+            board[irow][icolumn+1]= board[irow][icolumn];
+            board[irow][icolumn]=temp;
+            icolumn++;
+            
+            
+            
+        }
+        
+        
+        print();
     }
-   
+    
     
     return 0;
     
